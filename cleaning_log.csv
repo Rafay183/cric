@@ -1,0 +1,19 @@
+Step,Column,Rows_Affected,Action
+Duplicates,all,0,Removed exact duplicate rows
+Missing values,all,0,Checked for true NaN values in the raw file
+Player label,Player,62,Split 'Name (TEAM)' into Player + Country_Code + Country
+Player label,Played_ICC_XI,6,'ICC/XX' labels -> country XX and Played_ICC_XI = True
+Span,Span,62,"Split '1928-1948' into Debut_Year, Last_Year, Career_Years; added Era and Recently_Active"
+High score,HS,22,Removed '*' -> numeric High_Score + High_Score_Not_Out flag
+Balls faced,BF,30,'+' removed (ball data incomplete for older matches) -> flagged as Partial
+Balls faced,BF,3,'-' converted to NaN (Not available)
+Strike rate,SR,3,'-' converted to NaN
+Strike rate,SR_Reliable,33,Flagged strike rates based on partial / missing ball data as not reliable
+Ducks,0,1,'-' means no ducks -> 0
+Types,numeric columns,9,Converted counting columns to numeric types
+Feature engineering,17 new columns,62,"Added Dismissals, Fifty_Plus, per-match/innings rates, conversion %, duck %, boundary runs & %, sixes per innings, ranks"
+Validation,Average,0,Rows where Runs / (Innings - NO) differs from published Average by > 0.02 (0 = consistent)
+Validation,Not_Outs,0,Rows where Not_Outs > Innings (0 = consistent)
+Validation,Innings,0,Rows where Innings > 2 x Matches - impossible in Tests (0 = consistent)
+Validation,High_Score,0,Rows where High_Score > Runs (0 = consistent)
+Validation,Hundreds/Fifties,0,Rows where 50+ scores exceed innings (0 = consistent)
